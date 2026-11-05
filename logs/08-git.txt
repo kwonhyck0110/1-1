@@ -1,0 +1,20 @@
+PS C:\codyssey_hyck> git config --global user.name "kwonhyck0110"
+PS C:\codyssey_hyck> git config --global user.email "kwonhyck0110@gmail.com"
+PS C:\codyssey_hyck> git config --global init.defaultBranch main
+PS C:\codyssey_hyck> git config --list
+diff.astextplain.textconv=astextplain
+filter.lfs.clean=git-lfs clean -- %f
+filter.lfs.smudge=git-lfs smudge -- %f
+filter.lfs.process=git-lfs filter-process
+filter.lfs.required=true
+http.sslbackend=schannel
+core.autocrlf=true
+core.fscache=true
+core.symlinks=false
+pull.rebase=false
+credential.helper=manager
+credential.https://dev.azure.com.usehttppath=true
+init.defaultbranch=master
+user.name=kwonhyck0110
+user.email=kwonhyck0110@gmail.com
+init.defaultbranch=main

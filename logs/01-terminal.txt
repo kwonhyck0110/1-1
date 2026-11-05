@@ -1,0 +1,49 @@
+PS C:\Users\user> cd C:\codyssey_hyck
+PS C:\codyssey_hyck> pwd
+
+Path
+----
+C:\codyssey_hyck
+
+
+PS C:\codyssey_hyck> ls -Force
+
+
+    디렉터리: C:\codyssey_hyck
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----      2026-11-05   오후 7:00                app
+d-----      2026-11-05   오후 6:58                Dockerfile
+d-----      2026-11-05   오후 7:00                logs
+d-----      2026-11-05   오후 7:00                screenshots
+
+
+PS C:\codyssey_hyck> mkdir test_folder
+
+
+    디렉터리: C:\codyssey_hyck
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----      2026-11-05   오후 7:04                test_folder
+
+
+PS C:\codyssey_hyck> ni test.txt
+
+
+    디렉터리: C:\codyssey_hyck
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----      2026-11-05   오후 7:04              0 test.txt
+
+
+PS C:\codyssey_hyck> cp test.txt test_folder\
+PS C:\codyssey_hyck> cp test.txt test_folder\
+PS C:\codyssey_hyck> mv test.txt renamed.txt
+PS C:\codyssey_hyck> cat renamed.txt
+PS C:\codyssey_hyck> rm renamed.txt

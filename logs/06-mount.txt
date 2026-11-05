@@ -1,0 +1,11 @@
+PS C:\codyssey_hyck> logs/06-mount.txt
+PS C:\codyssey_hyck> echo "<h1>Before</h1>" > C:\codyssey_hyck\site\index.html
+PS C:\codyssey_hyck> docker run -d -p 9090:80 --name mount-test `
+>>   -v C:\codyssey_hyck\site:/usr/share/nginx/html nginx
+docker: Error response from daemon: Conflict. The container name "/mount-test" is already in use by container "b0c16c9bfe60c5995d6cdc6625a7bbc7c9be0e3475c4b7db8698ec8044949579". You have to remove (or rename) that container to be able to reuse that name.
+
+Run 'docker run --help' for more information
+
+What's next:
+    Debug this container error with Gordon → docker ai "help me fix this container error"
+PS C:\codyssey_hyck> echo "<h1>After</h1>" > C:\codyssey_hyck\site\index.html

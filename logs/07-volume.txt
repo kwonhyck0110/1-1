@@ -1,0 +1,13 @@
+PS C:\codyssey_hyck> docker volume create mydata
+mydata
+PS C:\codyssey_hyck> docker run -d --name vol-test -v mydata:/data ubuntu sleep infinity
+e614963f30f4d6d1b44fb02d1129c263b5ff95e1a35e01ad826928d6e16d6c83
+PS C:\codyssey_hyck> docker exec vol-test sh -c "echo hello > /data/file.txt"
+PS C:\codyssey_hyck> docker exec vol-test cat /data/file.txt
+hello
+PS C:\codyssey_hyck> docker rm -f vol-test
+vol-test
+PS C:\codyssey_hyck> docker run -d --name vol-test2 -v mydata:/data ubuntu sleep infinity
+dc2094218d5a7c4c5975add1bf69ffce23e578df018cdadf2ae2851f67b7a6f6
+PS C:\codyssey_hyck> docker exec vol-test2 cat /data/file.txt
+hello

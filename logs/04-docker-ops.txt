@@ -1,0 +1,27 @@
+PS C:\Users\user> docker pull ubuntu
+>> docker images
+Using default tag: latest
+latest: Pulling from library/ubuntu
+f3f25b84a7d7: Pull complete
+edafa32f5d9e: Pull complete
+21594acc2d8b: Download complete
+Digest: sha256:6a06111c3b0a8600feadb270aec771dc239bf407b25625f93f44ab00e11f4d3c
+Status: Downloaded newer image for ubuntu:latest
+docker.io/library/ubuntu:latest
+    
+                                                                                               i Info →   U  In Use
+IMAGE                ID             DISK USAGE   CONTENT SIZE   EXTRA
+hello-world:latest   c567b231f656       25.9kB         9.49kB    U
+ubuntu:latest        6a06111c3b0a        163MB         45.9MB
+
+
+PS C:\Users\user> docker run -it --name my-ubuntu ubuntu bash
+
+root@6262365505e6:/# ps -a
+    PID TTY          TIME CMD
+      8 pts/0    00:00:00 ps
+root@6262365505e6:/# log my-unbuntu
+bash: log: command not found
+
+root@6262365505e6:/# stats --no-stream
+bash: stats: command not found

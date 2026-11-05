@@ -1,0 +1,28 @@
+PS C:\Users\user> docker build -t my-web:1.0 .
+[+] Building 0.1s (1/1) FINISHED                                                                   docker:desktop-linux
+ => [internal] load build definition from Dockerfile                                                               0.0s
+ => => transferring dockerfile: 2B                                                                                 0.0s
+ERROR: failed to build: failed to solve: failed to read dockerfile: open Dockerfile: no such file or directory
+
+What's next:
+    Debug this build failure with Gordon → docker ai "help me fix this build failure"
+
+
+PS C:\Users\user> docker run -d -p 8080:5000 --name my-web-8080 my-web:1.0
+Unable to find image 'my-web:1.0' locally
+docker: Error response from daemon: pull access denied for my-web, repository does not exist or may require 'docker login'
+
+Run 'docker run --help' for more information
+
+What's next:
+    Debug this container error with Gordon → docker ai "help me fix this container error"
+
+
+PS C:\Users\user> docker run -d -p 8081:5000 --name my-web-8081 my-web:1.0
+Unable to find image 'my-web:1.0' locally
+docker: Error response from daemon: pull access denied for my-web, repository does not exist or may require 'docker login'
+
+Run 'docker run --help' for more information
+
+What's next:
+    Debug this container error with Gordon → docker ai "help me fix this container error"
