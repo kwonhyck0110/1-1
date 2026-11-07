@@ -62,10 +62,10 @@ docker exec vol-test2 cat /data/file.txt
 
 ## 6) 포트 매핑 접속 증거
 ### 8080 접속
-![8080 접속](.\screenshots\8080-access.png)
+![8080 접속](./screenshots/8080-access.png)
 
 ### 8081 접속
-![8081 접속](.\screenshots\8081-access.png)
+![8081 접속](./screenshots/8081-access.png)
 
 ## 트러블슈팅
 
