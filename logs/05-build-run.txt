@@ -1,28 +1,27 @@
-PS C:\Users\user> docker build -t my-web:1.0 .
-[+] Building 0.1s (1/1) FINISHED                                                                   docker:desktop-linux
- => [internal] load build definition from Dockerfile                                                               0.0s
- => => transferring dockerfile: 2B                                                                                 0.0s
-ERROR: failed to build: failed to solve: failed to read dockerfile: open Dockerfile: no such file or directory
-
-What's next:
-    Debug this build failure with Gordon → docker ai "help me fix this build failure"
-
-
-PS C:\Users\user> docker run -d -p 8080:5000 --name my-web-8080 my-web:1.0
-Unable to find image 'my-web:1.0' locally
-docker: Error response from daemon: pull access denied for my-web, repository does not exist or may require 'docker login'
-
-Run 'docker run --help' for more information
-
-What's next:
-    Debug this container error with Gordon → docker ai "help me fix this container error"
-
-
-PS C:\Users\user> docker run -d -p 8081:5000 --name my-web-8081 my-web:1.0
-Unable to find image 'my-web:1.0' locally
-docker: Error response from daemon: pull access denied for my-web, repository does not exist or may require 'docker login'
-
-Run 'docker run --help' for more information
-
-What's next:
-    Debug this container error with Gordon → docker ai "help me fix this container error"
+PS C:\codyssey_hyck> echo flask > C:\codyssey_hyck\requirements.txt
+ => [internal] load build definition from Dockerfile                                                                     0.0s
+ => [internal] load metadata for docker.io/library/python:3.11-slim                                                      0.8s
+ => [internal] load .dockerignore                                                                                        0.0s
+ => => transferring context: 2B                                                                                          0.0s
+ => [1/3] FROM docker.io/library/python:3.11-slim@sha256:65bd3d9f1d7fa268dd1909973ba7eb4bdf41f6dcf2cfbe76ba9528b170f3fd  0.0s
+ => => resolve docker.io/library/python:3.11-slim@sha256:65bd3d9f1d7fa268dd1909973ba7eb4bdf41f6dcf2cfbe76ba9528b170f3fd  0.0s
+ => [internal] load build context                                                                                        0.0s
+ => => transferring context: 8.83kB                                                                                      0.0s
+ => CACHED [2/3] WORKDIR /app                                                                                            0.0s
+ => CACHED [3/3] COPY . .                                                                                                0.0s
+ => exporting to image                                                                                                   0.1s
+ => => exporting layers                                                                                                  0.0s
+ => => exporting manifest sha256:d2f28df4fdeff876c4b984dfe8b3e64df7b691af68c6236c30405fb6bf6dd79e                        0.0s
+ => => exporting config sha256:fb343d7d482181de406753b58cff011533e9234bad8479a5d0e9a8206b3d78df                          0.0s
+ => => exporting attestation manifest sha256:a22c2b4264f97ca965183adb31675bf680b37bcb7c6a2180f0a0010c4d51b1ef            0.0s
+ => => exporting manifest list sha256:9d056753c4c039fc99c37d3c65d8bcc7d6d0c6ff5497fa45af5ab101d9327846                   0.0s
+ => => naming to docker.io/library/my-web:1.0                                                                            0.0s
+ => => unpacking to docker.io/library/my-web:1.0                                                                         0.0s
+PS C:\codyssey_hyck> docker rm -f my-web-8080
+my-web-8080
+PS C:\codyssey_hyck> docker rm -f my-web-8080
+PS C:\codyssey_hyck> docker rm -f my-web-8080
+PS C:\codyssey_hyck> docker run -d -p 8080:5000 --name my-web-8080 my-web:1.0
+c7d215f8465df582231606fcfd9ce1a789edc2653c47fb37cc0d4301388d6c75
+PS C:\codyssey_hyck> docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES

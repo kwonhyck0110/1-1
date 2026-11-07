@@ -18,3 +18,67 @@ init.defaultbranch=master
 user.name=kwonhyck0110
 user.email=kwonhyck0110@gmail.com
 init.defaultbranch=main
+
+PS C:\codyssey_hyck> git init
+PS C:\codyssey_hyck> git branch -M main
+PS C:\codyssey_hyck> git remote add origin https://github.com/kwonhyck0110/1-1.git
+error: remote origin already exists.
+PS C:\codyssey_hyck> git remote set-url origin https://github.com/kwonhyck0110/1-1.git
+PS C:\codyssey_hyck> git remote -v
+origin  https://github.com/kwonhyck0110/1-1.git (fetch)
+origin  https://github.com/kwonhyck0110/1-1.git (push)
+PS C:\codyssey_hyck> git add .
+warning: in the working copy of 'Dockerfile', LF will be replaced by CRLF the next time Git touches it
+PS C:\codyssey_hyck> git commit -m "Docker 워크스테이션 과제 제출"
+[main 09a752b] Docker 워크스테이션 과제 제출
+ create mode 100644 screenshots/02-permission.png
+ create mode 100644 test_folder/test.txt
+PS C:\codyssey_hyck> git push -u origin main
+To https://github.com/kwonhyck0110/1-1.git
+ ! [rejected]        main -> main (fetch first)
+error: failed to push some refs to 'https://github.com/kwonhyck0110/1-1.git'
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+PS C:\codyssey_hyck> git pull origin main --allow-unrelated-histories
+remote: Enumerating objects: 4, done.
+remote: Counting objects: 100% (4/4), done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 4 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+ * branch            main       -> FETCH_HEAD
+Auto-merging README.md
+CONFLICT (add/add): Merge conflict in README.md
+Automatic merge failed; fix conflicts and then commit the result.
+PS C:\codyssey_hyck> git status
+On branch main
+Your branch and 'origin/main' have diverged,
+and have 6 and 1 different commits each, respectively.
+  (use "git pull" if you want to integrate the remote branch with yours)
+
+You have unmerged paths.
+  (fix conflicts and run "git commit")
+  (use "git merge --abort" to abort the merge)
+
+Changes to be committed:
+        new file:   .gitignore
+
+Unmerged paths:
+  (use "git add <file>..." to mark resolution)
+        both added:      README.md
+
+PS C:\codyssey_hyck> git add README.md
+PS C:\codyssey_hyck> git commit -m "Merge: README 충돌 해결"
+[main 51ddcd4] Merge: README 충돌 해결
+PS C:\codyssey_hyck> git push -u origin main
+Enumerating objects: 51, done.
+Counting objects: 100% (51/51), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (41/41), done.
+Writing objects: 100% (49/49), 576.66 KiB | 12.01 MiB/s, done.
+Total 49 (delta 10), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (10/10), done.
+To https://github.com/kwonhyck0110/1-1.git
+   5339517..51ddcd4  main -> main
+branch 'main' set up to track 'origin/main'.
