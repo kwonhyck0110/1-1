@@ -69,11 +69,41 @@ docker exec vol-test2 cat /data/file.txt
 
 ## 트러블슈팅
 
-### 트러블슈팅 1 Docker Desktop 실행 안 됨
-- 증상: Docker Desktop이 실행되지 않음
-- 원인 가설: WSL2 미설치
-- 확인: wsl --status로 상태 확인
-- 해결: wsl --install 후 재부팅
+### TS-0X. git push 거부 (rejected: fetch first) + README 병합 충돌
+
+**증상**
+git push -u origin main 실행 시 아래 에러 발생:
+
+  ! [rejected]        main -> main (fetch first)
+  error: failed to push some refs to '...1-1.git'
+  hint: Updates were rejected because the remote contains work that
+        you do not have locally.
+
+**원인**
+- 새 원격 저장소(1-1)를 GitHub에서 README를 포함해 생성함
+- 그 결과 원격에 로컬에 없는 커밋이 존재 → 로컬 이력과 불일치(diverged)
+- git은 원격 내용을 덮어쓰지 않도록 push를 거부함
+
+**해결**
+1) 원격 이력을 먼저 가져와 병합 (서로 다른 이력이므로 옵션 추가)
+   git pull origin main --allow-unrelated-histories
+
+2) README.md 에서 add/add 병합 충돌 발생
+   CONFLICT (add/add): Merge conflict in README.md
+   → README.md 를 열어 <<<<<<< ======= >>>>>>> 표시 제거 후
+     최종 내용으로 정리
+
+3) 충돌 해결본 커밋
+   git add README.md
+   git commit -m "Merge: README 충돌 해결"
+
+4) 재푸시 성공
+   git push -u origin main
+   → 5339517..51ddcd4  main -> main
+
+**교훈**
+- 기존 파일을 올릴 새 원격 저장소는 README/라이선스 없이
+  "빈 저장소"로 생성하면 충돌을 피할 수 있다
 
 
 ### 트러블슈팅 2 빌드 실패: Dockerfile을 찾을 수 없음
@@ -82,7 +112,3 @@ docker exec vol-test2 cat /data/file.txt
         Dockerfile은 프로젝트 루트(C:\codyssey_hyck)에만 존재.
 - 확인: ls Dockerfile 로 현재 폴더에 파일 유무 점검
 - 해결: cd C:\codyssey_hyck 로 이동 후 docker build -t my-web:1.0 . 재실행
-=======
-# 1-1
-1-1
->>>>>>> 53395178daa50173445d85158cc0afb992ed4255
