@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # codyssey-1
 1-1과제 나만의 작업실 꾸미기
 # Docker 워크스테이션 구축 과제
@@ -81,3 +82,7 @@ docker exec vol-test2 cat /data/file.txt
         Dockerfile은 프로젝트 루트(C:\codyssey_hyck)에만 존재.
 - 확인: ls Dockerfile 로 현재 폴더에 파일 유무 점검
 - 해결: cd C:\codyssey_hyck 로 이동 후 docker build -t my-web:1.0 . 재실행
+=======
+# 1-1
+1-1
+>>>>>>> 53395178daa50173445d85158cc0afb992ed4255
