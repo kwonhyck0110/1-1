@@ -27,9 +27,39 @@ Git/GitHub 연동까지 개발 워크스테이션 환경을 구축한다.
 ### Docker 버전 확인
 ```bash
 $ docker --version
-Docker Docker version 29.9.2
+Docker version 29.9.2, build a82e528
+```
 
-## 5) 포트 매핑 접속 증거
+## 5) 볼륨(데이터 영속성) 구성
+### 사용한 볼륨 정보
+| 항목 | 값 |
+|------|-----|
+| 볼륨 이름 | mydata |
+| 마운트 경로(컨테이너 내부) | /data |
+| 테스트 이미지 | ubuntu |
+
+### 재현 명령 (데이터 영속성 검증 절차)
+```powershell
+# 1. 볼륨 생성
+docker volume create mydata
+
+# 2. 볼륨을 마운트한 컨테이너 실행
+docker run -d --name vol-test -v mydata:/data ubuntu sleep infinity
+
+# 3. 볼륨에 데이터 작성
+docker exec vol-test sh -c "echo hello > /data/file.txt"
+
+# 4. 컨테이너 강제 삭제 (데이터는 볼륨에 남음)
+docker rm -f vol-test
+
+# 5. 새 컨테이너에서 같은 볼륨 재마운트
+docker run -d --name vol-test2 -v mydata:/data ubuntu sleep infinity
+
+# 6. 데이터 보존 확인 → "hello" 출력되면 성공
+docker exec vol-test2 cat /data/file.txt
+```
+
+## 6) 포트 매핑 접속 증거
 ### 8080 접속
 ![8080 접속](./8080-access.png)
 
@@ -38,14 +68,16 @@ Docker Docker version 29.9.2
 
 ## 트러블슈팅
 
-### 트러블슈팅 ① Docker Desktop 실행 안 됨
+### 트러블슈팅 1 Docker Desktop 실행 안 됨
 - 증상: Docker Desktop이 실행되지 않음
 - 원인 가설: WSL2 미설치
 - 확인: wsl --status로 상태 확인
 - 해결: wsl --install 후 재부팅
 
-### 트러블슈팅 ② 이미지를 찾을 수 없음
-- 증상: docker run 시 pull access denied 에러
-- 원인 가설: 이미지 이름 불일치
-- 확인: docker images로 이름 확인
-- 해결: 올바른 이름으로 다시 실행
+
+### 트러블슈팅 2 빌드 실패: Dockerfile을 찾을 수 없음
+- 증상: docker build 시 "open Dockerfile: no such file or directory"
+- 원인: 잘못된 작업 디렉토리(C:\Users\user)에서 빌드함.
+        Dockerfile은 프로젝트 루트(C:\codyssey_hyck)에만 존재.
+- 확인: ls Dockerfile 로 현재 폴더에 파일 유무 점검
+- 해결: cd C:\codyssey_hyck 로 이동 후 docker build -t my-web:1.0 . 재실행

@@ -110,13 +110,16 @@ Server:
  Firewall Backend: iptables
 
 
-PS C:\Users\user> docker run hello-world
-Unable to find image 'hello-world:latest' locally
-latest: Pulling from library/hello-world
-4f55086f7dd0: Pull complete
-d5e71e642bf5: Download complete
-Digest: sha256:c567b231f65614688711a75f31518a064258a51d442117a3e771a3a8fdba78ef
-Status: Downloaded newer image for hello-world:latest
+PS C:\codyssey_hyck> docker ps -a            # ① 실행 전 상태 (hello-world 없음 확인)
+CONTAINER ID   IMAGE               COMMAND                   CREATED        STATUS                        PORTS                    NAMES
+8fd4809e8de5   codyssey_hyck-web   "python app.py"           44 hours ago   Created                                                codyssey_hyck-web-1
+d9d544dc08f6   my-web              "python app.py"           46 hours ago   Exited (255) 40 seconds ago   0.0.0.0:8081->5000/tcp   interesting_northcutt
+e4e2363df418   my-web              "python app.py"           46 hours ago   Exited (255) 40 seconds ago   0.0.0.0:8080->5000/tcp   great_germain
+dc2094218d5a   ubuntu              "sleep infinity"          2 days ago     Exited (255) 40 seconds ago                            vol-test2
+b0c16c9bfe60   nginx               "/docker-entrypoint.…"   2 days ago     Exited (255) 40 seconds ago   0.0.0.0:9090->80/tcp     mount-test
+6262365505e6   ubuntu              "bash"                    2 days ago     Exited (255) 40 seconds ago                            my-ubuntu
+70cc0c136868   hello-world         "/hello"                  2 days ago     Exited (0) 2 da
+PS C:\codyssey_hyck> docker run hello-world  # ② 컨테이너 실행
 
 Hello from Docker!
 This message shows that your installation appears to be working correctly.
@@ -138,3 +141,14 @@ Share images, automate workflows, and more with a free Docker ID:
 
 For more examples and ideas, visit:
  https://docs.docker.com/get-started/
+
+PS C:\codyssey_hyck> docker ps -a            # ③ 실행 후 상태 (hello-world 생긴 것 확인)
+CONTAINER ID   IMAGE               COMMAND                   CREATED         STATUS                        PORTS                    NAMES
+e6a871e9900d   hello-world         "/hello"                  6 seconds ago   Exited (0) 5 seconds ago                               nifty_shockley
+8fd4809e8de5   codyssey_hyck-web   "python app.py"           44 hours ago    Created                                                codyssey_hyck-web-1
+d9d544dc08f6   my-web              "python app.py"           46 hours ago    Exited (255) 49 seconds ago   0.0.0.0:8081->5000/tcp   interesting_northcutt
+e4e2363df418   my-web              "python app.py"           46 hours ago    Exited (255) 49 seconds ago   0.0.0.0:8080->5000/tcp   great_germain
+dc2094218d5a   ubuntu              "sleep infinity"          2 days ago      Exited (255) 49 seconds ago                            vol-test2
+b0c16c9bfe60   nginx               "/docker-entrypoint.…"   2 days ago      Exited (255) 49 seconds ago   0.0.0.0:9090->80/tcp     mount-test
+6262365505e6   ubuntu              "bash"                    2 days ago      Exited (255) 49 seconds ago                            my-ubuntu
+70cc0c136868   hello-world         "/hello"                  2 days ago      Exited (0) 2 days ago                                  unruffled_sutherland

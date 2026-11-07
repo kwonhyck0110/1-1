@@ -1,10 +1,4 @@
-FROM python:3.11-slim
-LABEL maintainer="kwonhyck0110@gmail.com"
-ENV APP_ENV=dev
-
+﻿FROM python:3.11-slim
 WORKDIR /app
-COPY app/ /app/
-RUN pip install flask
-
-EXPOSE 5000
+COPY . .
 CMD ["python", "app.py"]
