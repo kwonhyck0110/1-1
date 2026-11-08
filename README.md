@@ -10,8 +10,8 @@ Git/GitHub 연동까지 개발 워크스테이션 환경을 구축한다.
 ## 2) 실행 환경
 - OS: Windows 11
 - Shell: PowerShell 7.x
-- Docker: (docker --version 결과)
-- Git: (git version 2.56.0.windows.4 결과)
+- Docker: (Docker version 29.9.2)
+- Git: (git version 2.56.0.windows.4)
 
 ## 3) 수행 체크리스트
 - [x] 터미널 기본 조작 → [logs/01-terminal.txt](./logs/01-terminal.txt)
