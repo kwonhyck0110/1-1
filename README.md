@@ -8,8 +8,8 @@ Linux 터미널 기본 조작부터 Docker 기반 웹서버 배포,
 Git/GitHub 연동까지 개발 워크스테이션 환경을 구축한다.
 
 ## 2) 실행 환경
-- OS: Windows 11
-- Shell: PowerShell 7.x
+- OS: WSL 버전: 3.0.3.0 lynx, Ubuntu 26.04.1
+- Shell: PowerShell , bash
 - Docker: (Docker version 29.9.2)
 - Git: (git version 2.56.0.windows.4)
 
