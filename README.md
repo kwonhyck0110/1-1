@@ -13,11 +13,13 @@ Git/GitHub 연동까지 개발 워크스테이션 환경을 구축한다.
 - Docker: (Docker version 29.9.2)
 - Git: (git version 2.56.0.windows.4)
 
+  ![Github 연동 증거](./screenshots/vscode-github.png)
+
 ## 3) 수행 체크리스트
 - [x] 터미널 기본 조작 → [logs/01-terminal.txt](./logs/01-terminal.txt)
 - [x] 권한 변경 실습 → [logs/02-permission.txt](./logs/02-permission.txt)
 - [x] Docker 설치/점검 → [logs/03-docker-info.txt](./logs/03-docker-info.txt)
-- [x] Docker 운영 명령 → [logs/04-docker-ops.txt](./logs/04-docker-ops.txt)
+- [x] Docker 운영 명령/Hello World → [logs/04-docker-ops.txt](./logs/04-docker-ops.txt)
 - [x] Dockerfile 빌드/실행 → [logs/05-build-run.txt](./logs/05-build-run.txt)
 - [x] 포트 매핑 접속 2회 → [screenshots/](./screenshots/)
 - [x] 바인드 마운트 반영 → [logs/06-mount.txt](./logs/06-mount.txt)
@@ -85,6 +87,26 @@ docker exec vol-test2 cat /data/file.txt
 
 - 형식: `-p <호스트포트>:<컨테이너포트>`
 - 흐름: 브라우저 → 호스트:8080 → (Docker가 전달) → 컨테이너:5000 → 웹앱 응답
+
+### 컨테이너 내부 포트로 직접 접속할 수 없는 이유
+컨테이너는 호스트(내 PC)와 **분리된(격리된) 네트워크 공간**에서 실행된다.
+그래서 컨테이너 내부에서 열린 포트(예: 5000)는 **컨테이너 안에서만 유효**하고,
+호스트에서 `localhost:5000`으로 바로 접속할 수 없다.
+
+호스트에서 접속하려면 **포트 매핑(포트 포워딩)** 으로
+호스트 포트와 컨테이너 포트를 연결해 줘야 한다.
+
+### 호스트 포트 충돌 진단 순서
+
+1. 에러 메시지에서 충돌 포트 번호 확인 (`address already in use`)
+2. `netstat -ano | findstr :8080` → 점유 프로세스 PID 확인
+3. `tasklist | findstr <PID>` / `docker ps` → 정체 파악
+4. 해결:
+   - 다른 컨테이너면 → `docker rm -f <이름>`
+   - 다른 앱이면 → 종료 또는 다른 호스트 포트 사용(`-p 8081:5000`)
+
+### 포트매핑접속
+![포트매핑접속증거](./screenshots/포트매핑접속증거.png)
 
 ### 8080 접속
 ![8080 접속](./screenshots/8080-access.png)
@@ -232,3 +254,23 @@ git push -u origin main 실행 시 아래 에러 발생:
         Dockerfile은 프로젝트 루트(C:\codyssey_hyck)에만 존재.
 - 확인: ls Dockerfile 로 현재 폴더에 파일 유무 점검
 - 해결: cd C:\codyssey_hyck 로 이동 후 docker build -t my-web:1.0 . 재실행
+
+## 보너스 과제
+
+![보너스과제 3번](./screenshots/bouns.png)
+
+Compose 운영 명령어 & 상태 확인 루틴
+
+| 명령어 | 역할 |
+|--------|------|
+| `docker compose up -d` | 서비스 백그라운드 실행 |
+| `docker compose ps` | 실행 상태 확인 |
+| `docker compose logs -f` | 실시간 로그 확인 |
+| `docker compose down` | 중지 + 제거 (볼륨 유지) |
+
+### 상태 확인 루틴
+1. `up -d` 로 실행
+2. `ps` 로 서비스가 Up 인지 확인
+3. `logs -f` 로 정상 기동 로그 확인
+4. 브라우저/`curl` 로 접속 확인
+5. 문제 시 `restart`, 마무리 시 `down`
