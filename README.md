@@ -169,6 +169,8 @@ docker exec vol-test2 cat /data/file.txt
 
 ## 9) 파일 권한: 유닉스 rwx 와 숫자 매핑
 
+![파일권한 실습](./screenshots/02-permission.png)
+
 본 과제는 Windows(ACL) 환경에서 수행했으나, 리눅스 표준 권한 체계인
 rwx 비트와 숫자 표기 규칙을 함께 정리한다.
 
