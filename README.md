@@ -61,6 +61,8 @@ docker run -d --name vol-test2 -v mydata:/data ubuntu sleep infinity
 # 6. 데이터 보존 확인 → "hello" 출력되면 성공
 docker exec vol-test2 cat /data/file.txt
 ```
+![볼륨영속성검증절차](./screenshots/볼륨영속성.png)
+
 ### 바인드 마운트 vs Docker 볼륨 비교
 
 | 구분 | 바인드 마운트 | Docker 볼륨 |
@@ -256,6 +258,17 @@ git push -u origin main 실행 시 아래 에러 발생:
         Dockerfile은 프로젝트 루트(C:\codyssey_hyck)에만 존재.
 - 확인: ls Dockerfile 로 현재 폴더에 파일 유무 점검
 - 해결: cd C:\codyssey_hyck 로 이동 후 docker build -t my-web:1.0 . 재실행
+
+### 트러블 슈팅 3 볼륨 중복
+- 증상 :볼륨 영속성 검증 절차에서 캡쳐본 확보 실패로 같은 코드를 2번 첬는데 
+docker run -d --name vol-test2 -v mydata:/data ubuntu sleep infinity
+docker: Error response from daemon: Conflict. The container name "/vol-test2" is already in use by container "577fa2fc59dd18a62ecd534de77d589c453d6d5f00fbdab73d358cce6efb801f". You have to remove (or rename) that container to be able to reuse that name. <--오류 발생
+- 원인: 기존 볼륨을 삭제하거나 2번째 코드를 작성할때 이름을 다르게 만들었어야 한듯
+
+- 확인: PS C:\codyssey_hyck> docker ps -a 입력후 후 vol-test2 볼륨 확인
+- 해결:  docker rm -f vol-test2로 삭제
+
+![볼륨삭제](./screenshots/트러블슈팅3.png)
 
 ## 보너스 과제
 
